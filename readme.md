@@ -5,8 +5,8 @@ application is hosted on Google Appengine.
 
 ##Download##
 
-appcfg.py download_app -A bouvetone <<location>>
+appcfg.py download_app -A bouvetechtone <-directory->
 
 ##Update##
 
-appcfg.py update <<location>>
+appcfg.py update <-directory->
