@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Deltakerundersøkelse for TechOne</title>
+    <link rel="stylesheet" type="text/css" href="includes/reset-min.css"/>
+    <link rel="stylesheet" type="text/css" href="includes/iphone-style-checkboxes/style.css"/>
+    <link rel="stylesheet" type="text/css" href="includes/screen.css"/>
+    <script type="text/javascript" src="includes/jquery.js"></script>
+    <script type="text/javascript" src="includes/jquery-ui.js"></script>
+    <script type="text/javascript" src="includes/iphone-style-checkboxes/jquery/iphone-style-checkboxes.js"></script>
+    <script type="text/javascript" src="includes/script.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+    <img id="logo" src="includes/techone.jpg" alt="TechONE Logo" width="615" height="138">
+
+    <h1>Deltakerundersøkelse</h1>
+
+    <p>
+        I lista under kan du markere de foredragene du ønsker å få med deg.
+        Deltagelsen er anonym og dataene vil bli brukt til å fordele de største rommene til de mest populære foredragene.
+        Merk at dette ikke er en påmelding, men kun en popularitetsundersøkelse.
+    </p>
+
+    <p>
+        Resultatene av undersøkelsen kan du følge <a href="stats">her</a>!
+
+    </p>
+
+    <p>
+        Du kan endre dine valg frem til og med mandag 26. januar kl 12.00.
+    </p>
+
+    <form action="attend" method="post">
+        {% for session in sessions %}
+        <hr>
+        <h2>
+            <input
+                    type="checkbox"
+                    name="session"
+                    value="{{ session.id }}"
+                    id="{{ session.id }}"
+                    {% for sessionId in user.sessionIds %}{% ifequal sessionId session.id %}checked{% endifequal %}{% endfor %}>
+            <label for="{{ session.id }}">{{ session.title }}<span class="author"> - {{ session.author }}</span></label>
+        </h2>
+        <div class="description">{{ session.description }}<br/><span class="tags">Tags: {{ session.tags }}</span></div>
+        {% endfor %}
+
+        <input type="submit" class="button" value=" Lagre ">
+    </form>
+
+</div>
+
+</body>
+</html>
